@@ -1,16 +1,20 @@
 #!/usr/bin/python3
 """
-Function def pascal_triangle(n): that returns a list of lists of integers representing the Pascal’s triangle of n
+Pascal triangle module
 """
+
+
 def pascal_triangle(n):
+    """ Represent Pascal's Triangle of size n. """
     if n <= 0:
         return []
-    else:
-        triangle = [[1]]
-        for i in range(1, n):
-            row = [1]
-            for j in range(1, i):
-                row.append(triangle[i - 1][j - 1] + triangle[i - 1][j])
-            row.append(1)
-            triangle.append(row)
-        return triangle
+
+    pascal = [[1]]
+    while len(pascal) != n:
+        previous = pascal[-1]
+        current = [1]
+        for i in range(len(previous) - 1):
+            current.append(previous[i] + previous[i + 1])
+        current.append(1)
+        pascal.append(current)
+    return pascal
